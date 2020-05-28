@@ -43,4 +43,6 @@ urlpatterns = [
     path('schema/',schema_view),
     # 支付宝路由
     path('alipay/return/',AlipayView.as_view()),
+    # 第三方登录
+    path('',include('social_django.urls',namespace='social'))
 ]

@@ -31,7 +31,11 @@ REST_FRAMEWORK = {
 
 # 登录方式自定义的配置
 AUTHENTICATION_BACKENDS = (
-    'users.views.CustomBackend',
+    'users.views.CustomBackend',  # 手机号也可登录
+    'social_core.backends.weibo.WeiboOAuth2',  # 第三方登录-微博
+    'social_core.backends.weixin.WeixinOAuth2',  # 第三方登录-微信
+    'social_core.backends.qq.QQOAuth2',  # 第三方登录-QQ
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 # 有效时期
@@ -39,6 +43,9 @@ JWT_AUTH = {
     'JWT_EXPIRATION_DELTA': datetime.timedelta(days=7),    #也可设置seconds=20
     'JWT_AUTH_HEADER_PREFIX': 'JWT',   #JWT跟前端保持一致，
 }
+
+# 忽略最后的/
+APPEND_SLASH=False
 
 # 手机号码正则表达式
 REGEX_MOBILE = "^1[358]\d{9}$|^147\d{8}$|^176\d{8}$"
@@ -73,6 +80,7 @@ INSTALLED_APPS = [
     'DjangoUeditor',
     'django_filters',
     'coreschema',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -100,6 +108,9 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+            #     第三方登录
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -172,3 +183,10 @@ private_key_path = os.path.join(BASE_DIR,'apps/trade/keys/应用私钥2048.txt')
 ali_pub_key_path = os.path.join(BASE_DIR,'apps/trade/keys/alipay_key_2048.txt')
 
 
+'''
+    第三方的登录配置
+'''
+# 微博
+SOCIAL_AUTH_WEIBO_KEY = '1200417273'
+SOCIAL_AUTH_WEIBO_SECRET = 'db3b028edc1688eef3f939f61e3d58c5'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/index/'
