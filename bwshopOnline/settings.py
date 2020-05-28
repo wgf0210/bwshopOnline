@@ -116,8 +116,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'bwshoponline_db',
         'USER': 'root',
-        'PASSWORD': "002598",
-        'HOST': "127.0.0.1",
+        'PASSWORD': "123456",
+        'HOST': "39.107.141.56",
         'OPTIONS': { 'init_command': 'SET default_storage_engine=INNODB;' }
     }
 }
