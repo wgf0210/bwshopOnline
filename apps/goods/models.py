@@ -113,7 +113,6 @@ class HotSearchWords(models.Model):
         return self.keywords
 
 
-
 '''某一大类下的宣传商标'''
 class GoodsCategoryBrand(models.Model):
     category = models.ForeignKey(GoodsCategory, on_delete=models.CASCADE, related_name='brands', null=True, blank=True, verbose_name="商品类目")

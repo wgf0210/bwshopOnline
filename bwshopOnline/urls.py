@@ -10,7 +10,7 @@ from bwshopOnline.settings import MEDIA_ROOT
 from goods.views import GoodsListViewSet,CategoryViewSet,BannerViewset,IndexCategoryViewset
 from users.views import SmsCodeViewset,UserViewset
 from user_operation.views import UserFavViewset,LeavingMessageViewset,AddressViewset
-from trade.views import ShoppingCartViewset,OrderViewset
+from trade.views import ShoppingCartViewset,OrderViewset,AlipayView
 
 
 router = routers.DefaultRouter()
@@ -41,4 +41,6 @@ urlpatterns = [
     path('login/',obtain_jwt_token),
     path('docs/',include_docs_urls(title='生鲜项目的文档')),
     path('schema/',schema_view),
+    # 支付宝路由
+    path('alipay/return/',AlipayView.as_view()),
 ]

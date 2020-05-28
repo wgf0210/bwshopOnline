@@ -15,7 +15,7 @@ SECRET_KEY = 'zbxgue_5$-3(fux_ne4+clo!ki9jm0kwn26(*83b27o8*0tg6e'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 REST_FRAMEWORK = {
     # 'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.PageNumberPagination',
@@ -116,8 +116,10 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME':'bwshoponline_db',
         'USER': 'root',
-        'PASSWORD': "123456",
-        'HOST': "39.107.141.56",
+        'PASSWORD': "002598",
+        'HOST': "127.0.0.1",
+        # 'PASSWORD': "123456",
+        # 'HOST': "39.107.141.56",
         'OPTIONS': { 'init_command': 'SET default_storage_engine=INNODB;' }
     }
 }
@@ -164,3 +166,9 @@ STATIC_URL = '/static/'
 # 上传图片的文件夹
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# 支付宝配置
+private_key_path = os.path.join(BASE_DIR,'apps/trade/keys/应用私钥2048.txt')
+ali_pub_key_path = os.path.join(BASE_DIR,'apps/trade/keys/alipay_key_2048.txt')
+
+
