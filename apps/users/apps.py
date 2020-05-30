@@ -6,5 +6,5 @@ class UsersConfig(AppConfig):
     verbose_name = '用户管理'
 
     # 配置可以使用信号量的机制
-    def  ready(self):
+    def ready(self):
         import users.signals

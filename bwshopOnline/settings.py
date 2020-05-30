@@ -29,7 +29,7 @@ REST_FRAMEWORK = {
     )
 }
 
-# 登录方式自定义的配置
+# jwt验证登录方式自定义的配置
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',  # 手机号也可登录
     'social_core.backends.weibo.WeiboOAuth2',  # 第三方登录-微博
@@ -91,6 +91,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 设置中间件
     'corsheaders.middleware.CorsMiddleware',
 ]
 
@@ -173,6 +174,9 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static'),
+)
 
 # 上传图片的文件夹
 MEDIA_URL = '/media/'

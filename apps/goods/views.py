@@ -4,8 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework import mixins,generics,viewsets,filters
-from goods.serializers import GoodsSerializer, CategorySerializer, BannerSerializer, IndexCategorySerializer
-from goods.models import Goods, GoodsCategory, Banner
+from goods.serializers import GoodsSerializer, CategorySerializer, BannerSerializer, IndexCategorySerializer,HotWordsSerializer
+from goods.models import Goods, GoodsCategory, Banner,HotSearchWords
 from goods.filters import GoodsFilter
 
 '''商品分页'''
@@ -47,10 +47,16 @@ class GoodsListViewSet(mixins.ListModelMixin,mixins.RetrieveModelMixin,viewsets.
     filter_backends = (DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter)
     filter_class = GoodsFilter
 #     设置搜索
-    search_fields = ('name','goods_brief')
+    search_fields = ('name','goods_brief','goods_desc')
     # 排序
-    ordering_fields = ('sold_num','add_time')
-
+    ordering_fields = ('sold_num','shop_price')
+#     商品点击数+1
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        instance.click_num += 1
+        instance.save()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
 '''商品分类'''
 class CategoryViewSet(mixins.ListModelMixin,mixins.RetrieveModelMixin,viewsets.GenericViewSet):
@@ -77,7 +83,10 @@ class IndexCategoryViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
     serializer_class = IndexCategorySerializer
 
 
-
+'''首页热搜'''
+class HotSearchsViewset(mixins.ListModelMixin, viewsets.GenericViewSet):
+    queryset = HotSearchWords.objects.all().order_by("-index")
+    serializer_class = HotWordsSerializer
 
 
 

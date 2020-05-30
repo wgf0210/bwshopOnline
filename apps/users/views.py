@@ -25,18 +25,17 @@ class CustomBackend(ModelBackend):
             if user.check_password(password):
                 return user
         except Exception as e:
-            # 异常信息UserProfile matching query does not exist
-            raise serializers.ValidationError({'username_error_field': '账户输入错误'})
-            return None
-        else:
-            raise serializers.ValidationError({'password_error_field': '密码输入错误'})
+        #     # 异常信息UserProfile matching query does not exist
+        #     raise serializers.ValidationError({'username_error_field': '账户输入错误'})
+        #     return None
+        # else:
+        #     raise serializers.ValidationError({'password_error_field': '密码输入错误'})
             return None
 
 
 '''手机的验证码'''
 class SmsCodeViewset(CreateModelMixin,viewsets.GenericViewSet):
     serializer_class = SmsSerializer
-
     def generate_code(self):
         """
         生成四位数字的验证码

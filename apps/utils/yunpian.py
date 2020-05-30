@@ -5,12 +5,12 @@ import requests
 
 
 class YunPian(object):
-
     def __init__(self, api_key):
         self.api_key = api_key
         self.single_send_url = "https://sms.yunpian.com/v2/sms/single_send.json"
 
     def send_sms(self, code, mobile):
+        # 需要传递的参数
         parmas = {
             "apikey": self.api_key,
             "mobile": mobile,

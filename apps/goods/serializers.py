@@ -1,5 +1,5 @@
 from rest_framework import serializers, viewsets,mixins
-from goods.models import Goods, GoodsCategory, GoodsImage, Banner, IndexAd,GoodsCategoryBrand
+from goods.models import Goods, GoodsCategory, GoodsImage, Banner, IndexAd,GoodsCategoryBrand,HotSearchWords
 from django.db.models import Q
 
 
@@ -84,4 +84,11 @@ class IndexCategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GoodsCategory
+        fields = "__all__"
+
+
+# 热搜
+class HotWordsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HotSearchWords
         fields = "__all__"

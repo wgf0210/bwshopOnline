@@ -41,6 +41,12 @@ class UserFavViewset(mixins.CreateModelMixin, mixins.ListModelMixin, mixins.Retr
         # 只能查看当前登录用户的收藏，不会获取所有用户的收藏
         return UserFav.objects.filter(user=self.request.user)
 
+    # 用户收藏商品+1
+    def perform_create(self, serializer):
+        instance = serializer.save()
+        goods = instance.goods
+        goods.fav_num += 1
+        goods.save()
 
 
 '''用户留言'''
