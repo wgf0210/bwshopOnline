@@ -34,7 +34,7 @@ mysqlclient==1.4.6
 odfpy==1.4.1
 openpyxl==3.0.3
 Pillow==7.1.2
-PyJWT==1.7.1
+PyJWT==2.4.0
 PyMySQL==0.9.3
 pytz==2020.1
 PyYAML==5.3.1
